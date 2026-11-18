@@ -9,12 +9,40 @@ The Ultimate Swiss Army knife for DevOps, Developers and Platform Engineers
 | Steps  | Playlist :tv: | Source :octocat: | 
 |---|---|---|
 | Learn Kubernetes :snowflake:  | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVvUEdqaBeMK2awVThNujwMd" title="Kubernetes"><img src="https://i.ytimg.com/vi/8h4FoWK7tIA/hqdefault.jpg" width="50%" alt="Kubernetes Guide" /></a>  | [source](./kubernetes/readme.md)   | 
-| Learn about CI/CD tools :whale: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVsSsrnZimHEf7NJ1MlRhQUj" title="CI/CD"><img src="https://i.ytimg.com/vi/myCcJJ_Fk10/hqdefault.jpg" width="50%" alt="CI/CD Guide" /></a>  |   |   |   |
+| Learn about CI/CD tools :whale: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVsSsrnZimHEf7NJ1MlRhQUj" title="CI/CD"><img src="https://i.ytimg.com/vi/myCcJJ_Fk10/hqdefault.jpg" width="50%" alt="CI/CD Guide" /></a>  | [source](./jenkins/readme.md)  |
 | Deploy Kubernetes to the cloud :partly_sunny: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVsUhzNBkn-rPzXtPNpJu1-k" title="Cloud K8s"><img src="https://i.ytimg.com/vi/3jA9EfkSAUU/hqdefault.jpg" width="50%" alt="Cloud Guide" /></a>  | [source](./kubernetes/cloud/readme.md)  | 
-| Monitoring Kubernetes :mag: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVuEXCrRkPFWLXRKWNLOVUHn" title="Cloud K8s"><img src="https://i.ytimg.com/vi/5o37CGlNLr8/hqdefault.jpg" width="50%" alt="Cloud Guide" /></a>   | [source](./monitoring/prometheus/kubernetes/readme.md)  | 
-| Guide to Logging :page_with_curl: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVvfDxFW50Mdezk0xum-tyHT" title="Cloud K8s"><img src="https://i.ytimg.com/vi/MMVdkzeQ848/hqdefault.jpg" width="50%" alt="Cloud Guide" /></a>   | [source](./monitoring/logging/readme.md)  |  
-| Guide to ServiceMesh :globe_with_meridians: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVsmxHpGsMjTOROn3i99lzTA" title="Cloud K8s"><img src="https://i.ytimg.com/vi/rVNPnHeGYBE/hqdefault.jpg" width="50%" alt="Cloud Guide" /></a>   | [source](./kubernetes/servicemesh/readme.md)  |
+| Monitoring Kubernetes :mag: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVuEXCrRkPFWLXRKWNLOVUHn" title="Monitoring"><img src="https://i.ytimg.com/vi/5o37CGlNLr8/hqdefault.jpg" width="50%" alt="Monitoring Guide" /></a>   | [source](./monitoring/prometheus/kubernetes/readme.md)  | 
+| Guide to Logging :page_with_curl: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVvfDxFW50Mdezk0xum-tyHT" title="Logging"><img src="https://i.ytimg.com/vi/MMVdkzeQ848/hqdefault.jpg" width="50%" alt="Logging Guide" /></a>   | [source](./monitoring/logging/readme.md)  |  
+| Guide to ServiceMesh :globe_with_meridians: | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVsmxHpGsMjTOROn3i99lzTA" title="Service Mesh"><img src="https://i.ytimg.com/vi/rVNPnHeGYBE/hqdefault.jpg" width="50%" alt="Service Mesh Guide" /></a>   | [source](./kubernetes/servicemesh/readme.md)  |
 
+
+## Repository Layout
+
+| Area | Folders |
+|---|---|
+| Sample apps & Dockerfiles | [c#](./c%23), [golang](./golang), [nodejs](./nodejs), [python](./python), [springboot](./springboot), [deno](./deno) |
+| Kubernetes & GitOps | [kubernetes](./kubernetes), [argo](./argo), [flux](./flux) |
+| CI/CD | [jenkins](./jenkins), [drone-ci](./drone-ci), [github](./github) |
+| Observability | [monitoring](./monitoring), [tracing](./tracing) |
+| Infrastructure & platform | [apache](./apache), [hashicorp](./hashicorp), [messaging](./messaging), [storage](./storage), [security](./security) |
+
+## Running the Sample Apps
+
+The root [docker-compose.yaml](./docker-compose.yaml) builds and runs the sample apps with local source mounted for development and debugging.
+
+| Service | Host ports | Notes |
+|---|---|---|
+| `csharp` | 5000 | `debug` build target |
+| `golang` | 5001, 2345 | `prod` target; 2345 is the Delve debugger port |
+| `python` | 5003, 5678 | `debug` target; 5678 is the debugger port |
+| `nodejs` | 5002, 9229 | `debug` target; 9229 is the inspector port |
+| `spring-java` | 9999 | `debug` target; starts an interactive shell |
+
+```
+docker-compose up --build csharp
+```
+
+Replace `csharp` with any service name above, or omit it to start everything.
 
 ## Docker Development Basics
 
