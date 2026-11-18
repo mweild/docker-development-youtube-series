@@ -6,6 +6,41 @@ The Ultimate Swiss Army knife for DevOps, Developers and Platform Engineers
 <br/>
 
 
+## About this repository
+
+This repo holds the source code and walkthroughs that accompany the YouTube tutorials by Marcel Dempers on DevOps, development and platform engineering. It is a fork of [marcel-dempers/docker-development-youtube-series](https://github.com/marcel-dempers/docker-development-youtube-series). Several links below still point to the upstream repo and its branches (for example `part1`, `part2` and `debugging-python`).
+
+### Repository layout
+
+| Area | Folders |
+|---|---|
+| Languages and sample apps | [`c#`](./c%23), [`golang`](./golang), [`nodejs`](./nodejs), [`python`](./python), [`springboot`](./springboot), [`deno`](./deno) |
+| Kubernetes and GitOps | [`kubernetes`](./kubernetes), [`argo`](./argo), [`flux`](./flux) |
+| CI/CD | [`jenkins`](./jenkins), [`drone-ci`](./drone-ci), [`github`](./github), [`.github`](./.github) |
+| Observability | [`monitoring`](./monitoring), [`tracing`](./tracing) |
+| Infrastructure and other tools | [`apache`](./apache), [`hashicorp`](./hashicorp), [`messaging`](./messaging), [`security`](./security), [`storage`](./storage) |
+
+### Local development with Docker Compose
+
+The root [`docker-compose.yaml`](./docker-compose.yaml) (version 3.4) defines services for local development and debugging. Each service builds from its language folder, mounts the source code as a volume, and is tagged `aimvector/<name>:1.0.0`.
+
+| Service | Build context | Build target | Ports (host:container) |
+|---|---|---|---|
+| `csharp` | `./c#` | `debug` | 5000:5000 |
+| `golang` | `./golang` | `prod` | 5001:5000 (app), 2345:2345 (debugger) |
+| `python` | `./python` | `debug` | 5003:5000 (app), 5678:5678 (debugger) |
+| `nodejs` | `./nodejs` | `debug` | 5002:5000 (app), 9229:9229 (debugger) |
+| `spring-java` | `./springboot/java/` | `debug` | 9999:8080 |
+
+Notes:
+- The `golang` service also mounts the `configs` and `secrets` folders. It runs with `seccomp:unconfined`, which the Delve debugger needs.
+- The `spring-java` service starts with a shell entrypoint and an interactive TTY.
+
+```
+docker-compose up --build <service>
+```
+
+
 | Steps  | Playlist :tv: | Source :octocat: | 
 |---|---|---|
 | Learn Kubernetes :snowflake:  | <a href="https://www.youtube.com/playlist?list=PLHq1uqvAteVvUEdqaBeMK2awVThNujwMd" title="Kubernetes"><img src="https://i.ytimg.com/vi/8h4FoWK7tIA/hqdefault.jpg" width="50%" alt="Kubernetes Guide" /></a>  | [source](./kubernetes/readme.md)   | 
