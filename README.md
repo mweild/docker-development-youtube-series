@@ -3,6 +3,52 @@
 A Collection of tools, hands-on walkthroughs with source code. <br/>
 The Ultimate Swiss Army knife for DevOps, Developers and Platform Engineers
 
+## About this repository
+
+This repository holds the source code, Dockerfiles and Kubernetes manifests that accompany a DevOps YouTube series by Marcel Dempers.
+Each playlist or video in the tables below links to the folder (or branch) with the matching code,
+so you can follow along and run the examples yourself.
+
+This repo is a fork of [marcel-dempers/docker-development-youtube-series](https://github.com/marcel-dempers/docker-development-youtube-series).
+Links to branches such as `part1`, `part2` and `part3` point to the original repository.
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) with Docker Compose, for the Docker examples
+- `kubectl` and a Kubernetes cluster (for example [kind](https://kind.sigs.k8s.io/)), for the Kubernetes examples
+
+### Repository layout
+
+| Folder | Contents |
+|---|---|
+| `c#/`, `golang/`, `python/`, `nodejs/`, `deno/`, `springboot/` | Sample apps and Dockerfiles for the Docker development basics |
+| `kubernetes/` | Kubernetes guides: deployments, services, ingress, RBAC, Helm, Kustomize, autoscaling, cloud, service mesh and more |
+| `monitoring/`, `tracing/` | Prometheus, logging and tracing examples |
+| `argo/`, `flux/`, `drone-ci/`, `jenkins/`, `github/` | CI/CD and GitOps tools |
+| `messaging/`, `storage/`, `apache/` | Kafka, RabbitMQ and Redis |
+| `hashicorp/` | HashiCorp Vault |
+| `security/` | Let's Encrypt |
+
+### Running the sample apps
+
+The root `docker-compose.yaml` defines a development container for the language examples.
+From the repository root:
+
+```
+docker-compose build <service>
+docker-compose up <service>
+```
+
+| Service | Host port(s) | Notes |
+|---|---|---|
+| `csharp` | 5000 | |
+| `golang` | 5001, 2345 | 2345 is the Delve debug port |
+| `nodejs` | 5002, 9229 | 9229 is the Node.js debug port |
+| `python` | 5003, 5678 | 5678 is the debug port |
+| `spring-java` | 9999 | |
+
+See the comments in `docker-compose.yaml` for the equivalent `docker run` commands.
+
 <br/>
 
 
